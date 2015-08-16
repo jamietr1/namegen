@@ -1,0 +1,5 @@
+Name data comes from Social Security Administration "Beyond the Top 1000 Names" website:
+
+http://www.ssa.gov/oact/babynames/limits.html
+
+Data pulled on 8/14/2015

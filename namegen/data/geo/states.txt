@@ -1,0 +1,52 @@
+Alabama,East
+Alaska,West
+Arizona,West
+Arkanas,Central
+California,West
+Colorado,West
+Connecticut,East
+Delaware,East
+District of Columbia,East
+Florida,East
+Georgia,East
+Hawaii,West
+Idaho,West
+Illinois,Central
+Indiana,Central
+Iowa,Central
+Kansas,Central
+Kentucky,Central
+Louisiana,Central
+Maine,East
+Maryland,East
+Massachusetts,East
+Michigan,Central
+Minnesota,Central
+Mississippi,Central
+Missouri,Central
+Montana,West
+Nebraska,Central
+Nevada,West
+New Hampshire,East
+New Jersey,East
+New Mexico,West
+New York,East
+North Carolina,East
+North Dakota,Central
+Ohio,Central
+Oklahoma,Central
+Oregon,West
+Pennsylvania,East
+Puerto Rica,East
+Rhode Island,East
+South Carolina,East
+South Dakota,Central
+Tennessee,Central
+Texas,Central
+Utah,West
+Vermont,East
+Virginia,East
+Washington,West
+West Virginia,East
+Wisconsin,Central
+Wyoming,Central

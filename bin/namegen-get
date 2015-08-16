@@ -2,6 +2,7 @@
 
 import namegen
 import sys, getopt
+import re
 
 def main(argv):
     count = 1
@@ -21,7 +22,8 @@ def main(argv):
         elif opt == '-f':
             gender = 'F'
     for x in range(1, int(count)):
-        print namegen.fullname(int(year), gender)
+        first, last = namegen.fullname(int(year), gender)
+        print first + ' ' + last
 
 if __name__ == "__main__":
     main(sys.argv[1:])

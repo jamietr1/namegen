@@ -14,25 +14,32 @@ def firstname(year, gender):
     DATA_PATH = os.path.join(this_dir, "data/firstnames", 'yob' + str(year) + '.txt')
 
     # 2. Build a mapping
-    nameDict = {}
+    min_val = 0
+    max_val = 1622666
+    roll = random.randint(1, max_val)
+
     with open(DATA_PATH, 'r') as f:
         for line in f:
-            splitLine = line.split(',')
+            splitLine = line.rstrip('\n').split(',')
             if splitLine[1] == gender:
-                nameDict[splitLine[0]] = int(splitLine[2])
+                max_val = int(splitLine[2])
+                if (roll > min_val) and (roll <= max_val):
+                    first_name = splitLine[0]
+                    break
 
-    # 3. Calcuate the total
-    population = sum(nameDict.values())
-    census = []
-    for name in nameDict:
-        for x in range(1, nameDict[name]):
-            census.append(name)
+                min_val = max_val
 
-    # TODO: Need a diminutive lookup for common names with dims
-    #       This would allow for more options
-
-    # 4. Generate the name
-    return random.choice(census)
+    # 3. Does the name have a diminutive?
+    diminutives = has_diminutive(first_name)
+    if (diminutives != ''):
+        if random.randint(1,100) > 50:
+            dim_list = diminutives.split(',')
+            diminutive = random.choice(dim_list)
+            return first_name + ' (' + diminutive + ')'
+        else:
+            return first_name
+    else:
+        return first_name
 
 def surname():
     this_dir, this_file = os.path.split(__file__)
@@ -56,3 +63,19 @@ def fullname(year, gender):
     first_name = firstname(year, gender)
     last_name = surname()
     return first_name, last_name
+
+def has_diminutive(name):
+    name_dict = {}
+    this_dir, this_file = os.path.split(__file__)
+    DATA_PATH = os.path.join(this_dir, "data/firstnames", 'diminutives.txt')
+
+    with open(DATA_PATH, 'r') as f:
+        for line in f:
+            line.rstrip('\n')
+            splitLine = line.split(':')
+            name_dict[splitLine[0]] = splitLine[1]
+
+    if name in name_dict:
+        return name_dict[name].rstrip('\n')
+    else:
+        return ''

@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import namegen
+import sys, getopt
+
+def main(argv):
+    count = 1
+
+    try:
+        opts, args = getopt.getopt(argv, "y:mfc:")
+    except getopt.GetoptError:
+        print "namegen-get -y <year> -m -f -c <count>"
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-y':
+            year = arg
+        elif opt == '-c':
+            count = arg
+        elif opt == '-m':
+            gender = 'M'
+        elif opt == '-f':
+            gender = 'F'
+    for x in range(1, int(count)):
+        print namegen.fullname(int(year), gender)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

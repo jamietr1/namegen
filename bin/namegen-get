@@ -2,10 +2,14 @@
 
 import namegen
 import sys, getopt
-import re
+import random
 
 def main(argv):
-    count = 1
+    year = 0
+    count = 0
+    opt_c = 0
+    opt_m = 0
+    opt_f = 0
 
     try:
         opts, args = getopt.getopt(argv, "y:mfc:")
@@ -17,11 +21,29 @@ def main(argv):
             year = arg
         elif opt == '-c':
             count = arg
+            opt_c = 1
         elif opt == '-m':
             gender = 'M'
+            opt_m = 1
         elif opt == '-f':
             gender = 'F'
-    for x in range(1, int(count)):
+            opt_f = 1
+
+    if year == 0:
+        year = random.randint(1880, 2014)
+    elif (year < 1880) or (year > 2014):
+        print "Year must be in the range 1880 - 2014."
+        exit(2)
+
+    if opt_c == 0:
+        # Acts as a default if count isn't provided
+        count = 1
+
+    if (opt_m == 0) and (opt_f == 0):
+        genders = ['M', 'F']
+        gender = random.choice(genders)
+
+    for x in range(0, int(count)):
         first, last = namegen.fullname(int(year), gender)
         print first + ' ' + last
 

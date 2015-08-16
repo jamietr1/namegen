@@ -15,7 +15,7 @@ def firstname(year, gender):
 
     # 2. Build a mapping
     min_val = 0
-    max_val = 1622666
+    max_val = get_max_population(year, gender)
     roll = random.randint(1, max_val)
 
     with open(DATA_PATH, 'r') as f:
@@ -79,3 +79,17 @@ def has_diminutive(name):
         return name_dict[name].rstrip('\n')
     else:
         return ''
+
+def get_max_population(year, gender):
+    # 1. Find the right file
+    this_dir, this_file = os.path.split(__file__)
+    DATA_PATH = os.path.join(this_dir, "data/firstnames", 'yob' + str(year) + '.txt')
+
+    population = []
+    with open(DATA_PATH, 'r') as f:
+        for line in f:
+            splitLine = line.rstrip('\n').split(',')
+            if splitLine[1] == gender:
+                population.append(int(splitLine[2]))
+
+    return max(population)

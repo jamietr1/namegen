@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+import namegen
+import sys, getopt
+import random
+
+def main(argv):
+    year = 0
+    count = 0
+    opt_c = 0
+    opt_m = 0
+    opt_f = 0
+
+    try:
+        opts, args = getopt.getopt(argv, "y:mfc:")
+    except getopt.GetoptError:
+        print "namegen-get -y <year> -m -f -c <count>"
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-y':
+            year = arg
+        elif opt == '-c':
+            count = arg
+            opt_c = 1
+        elif opt == '-m':
+            gender = 'M'
+            opt_m = 1
+        elif opt == '-f':
+            gender = 'F'
+            opt_f = 1
+
+    if year == 0:
+        year = random.randint(1880, 2014)
+    elif (year < 1880) or (year > 2014):
+        print "Year must be in the range 1880 - 2014."
+        exit(2)
+
+    if opt_c == 0:
+        # Acts as a default if count isn't provided
+        count = 1
+
+    if (opt_m == 0) and (opt_f == 0):
+        genders = ['M', 'F']
+        gender = random.choice(genders)
+
+    for x in range(0, int(count)):
+        first, last = namegen.fullname(int(year), gender)
+        print first + ' ' + last
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

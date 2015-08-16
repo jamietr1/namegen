@@ -44,7 +44,7 @@ def main(argv):
         gender = random.choice(genders)
 
     for x in range(0, int(count)):
-        first, last = namegen.fullname(int(year), gender)
+        first, last = namegen.get_random_fullname(int(year), gender)
         print first + ' ' + last
 
 if __name__ == "__main__":

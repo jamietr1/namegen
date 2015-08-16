@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+import namegen
+import sys, getopt
+import random
+
+def main(argv):
+    opt_s = ''
+    population = 0
+
+    try:
+        opts, args = getopt.getopt(argv, "s:p:")
+    except getopt.GetoptError:
+        print "namegen-city -s <state> -p <population>"
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-s':
+            state = arg
+        elif opt == '-p':
+            population = int(arg)
+
+    if state == '':
+        # No state supplied so select a random state
+        state = namegen.get_random_state('')
+
+    city = namegen.get_random_city(state, population)
+
+    print city + ', ' + state
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

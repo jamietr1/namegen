@@ -11,8 +11,8 @@ setup(name='namegen',
       package_dir={'namegen': 'namegen'},
       package_data={'namegen': ['namegen/data/*.txt']},
       install_requires=[
-      
+
       ],
-      scripts=['bin/namegen-get'],
+      scripts=['bin/namegen-person', 'bin/namegen-city'],
       include_package_data=True,
       zip_safe=False)

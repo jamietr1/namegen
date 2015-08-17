@@ -15,7 +15,10 @@ def get_random_state(region):
             elif region == tokens[1]:
                 states.append(tokens[0])
 
-    return random.choice(states)
+    if len(states) == 0:
+        return ''
+    else:
+        return random.choice(states)
 
 
 def get_random_city(statename, population):
@@ -35,4 +38,7 @@ def get_random_city(statename, population):
                 elif population > int(tokens[2]):
                     cities.append(tokens[0])
 
-    return random.choice(cities)
+    if len(cities) == 0:
+        return ''
+    else:
+        return random.choice(cities)

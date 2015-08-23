@@ -1401,7 +1401,7 @@ Jurupa Valley,California,(X)
 Kerman,California,13544
 King City,California,12874
 Kingsburg,California,11382
-La Ca–ada Flintridge,California,20246
+La Caï¿½ada Flintridge,California,20246
 Lafayette,California,23893
 Laguna Beach,California,22723
 Laguna Hills,California,30344
@@ -1714,7 +1714,7 @@ Buena Vista,Colorado,2617
 Burlington,Colorado,4254
 Calhan,Colorado,780
 Campo,Colorado,109
-Ca–on City,Colorado,16400
+Caï¿½on City,Colorado,16400
 Carbondale,Colorado,6427
 Castle Pines,Colorado,(X)
 Castle Rock,Colorado,48231
@@ -2209,7 +2209,7 @@ Indian Shores,Florida,1420
 Inglis,Florida,1325
 Interlachen,Florida,1403
 Inverness,Florida,7210
-Islamorada,Village of Islands village; Florida,6119
+Islamorada,Florida,6119
 Jacksonville,Florida,821784
 Jacksonville Beach,Florida,21362
 Jacob City,Florida,250
@@ -11261,7 +11261,7 @@ Edgewood,New Mexico,3735
 Elephant Butte,New Mexico,1431
 Elida,New Mexico,197
 Encino,New Mexico,82
-Espa–ola,New Mexico,10224
+Espaï¿½ola,New Mexico,10224
 Estancia,New Mexico,1655
 Eunice,New Mexico,2922
 Farmington,New Mexico,45877
@@ -16407,7 +16407,7 @@ Loretto,Tennessee,1714
 Loudon,Tennessee,5381
 Louisville,Tennessee,2439
 Luttrell,Tennessee,1074
-Lynchburg,Moore County metropolitan government; Tennessee,6362
+Lynchburg,Tennessee,6362
 Lynnville,Tennessee,287
 McEwen,Tennessee,1750
 McKenzie,Tennessee,5310

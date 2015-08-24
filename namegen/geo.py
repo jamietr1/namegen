@@ -1,72 +1,58 @@
 import collections
 import random
 import os
-import MySQLdb as mdb
 
 def get_random_state(region):
-    # Randomly selects a state based on the distribution of the poplation of all states
-    con = mdb.connect('localhost', 'bc', 'rand5725', 'Baseball')
-    #SQL = "select State, MAX(Cumulative) from bs_Geography grou by State order by MAX(Cumulative) DESC limit 1;"
+    states = []
+    for state in state_list:
+        if region == '':
+            states.append(state)
+        elif region == state_list[state]:
+            states.append(state)
 
-    SQL = "set @csum := 0;"
+    if len(states) == 0:
+        return ''
+    else:
+        return random.choice(states)
 
-
-    with con:
-        cur = con.cursor()
-        SQL = "set @csum := 0;"
-        cur.execute(SQL)
-        SQL = "select Pop.s as State, (@csum := @csum + Pop.p) +1 - Pop.p as Min, (@csum := @csum + Pop.p) as Max from (select State as s, SUM(Population) as p from bs_Geography group by s ORDER BY 2) as Pop order by 2 DESC limit 1;"
-        cur.execute(SQL)
-        row = cur.fetchone()
-        max_pop = row[2]
-
-    roll = random.randint(1, max_pop)
-
-    with con:
-        cur = con.cursor()
-        SQL = "set @csum := 0;"
-        cur.execute(SQL)
-        SQL = "select Pop.s as State, (@csum := @csum + Pop.p) +1 - Pop.p as Min, (@csum := @csum + Pop.p) as Max from (select State as s, SUM(Population) as p from bs_Geography group by s ORDER BY 2) as Pop where '" + str(roll) + "' between (@csum := @csum + Pop.p) +1 - Pop.p and (@csum := @csum + Pop.p);"
-        cur.execute(SQL)
-        row = cur.fetchone()
-        random_state = row[0]
-    if con:
-        con.close()
-
-    return random_state
-
-def get_random_city(statename):
+def get_random_city(statename, population):
     if statename == '':
-        statename = get_random_state('')
+        statename = state('')
 
-    con = mdb.connect('localhost', 'bc', 'rand5725', 'Baseball')
-    SQL = "set @csum := 0;"
+    cities = []
+    for city in city_list:
+        tokens = city_list[city].split(',')
+        city_name = city.split(',')
+        if tokens[0] == statename:
+            if population == 0:
+                cities.append(city_name[0])
+            elif population > int(tokens[1]):
+                cities.append(city_name[0])
+            break
 
-    with con:
-        cur = con.cursor()
-        SQL = "set @csum := 0;"
-        cur.execute(SQL)
+    if len(cities) == 0:
+        return ''
+    else:
+        return random.choice(cities)
 
-        SQL = "select Pop.s as City, (@csum := @csum + Pop.p) +1 - Pop.p as Min, (@csum := @csum + Pop.p) as Max from (select City as s, SUM(Population) as p	from bs_Geography where State = '" + statename + "' group by s ORDER BY 2) as Pop order by 2 desc limit 1;"
+def get_states():
+    global state_list
+    state_list = {}
+    this_dir, this_file = os.path.split(__file__)
+    DATA_PATH = os.path.join(this_dir, "data/geo/states.txt")
 
-        cur.execute(SQL)
-        row = cur.fetchone()
-        max_pop = row[2]
+    with open(DATA_PATH, 'r') as f:
+        for line in f:
+            tokens = line.rstrip('\n').split(',')
+            state_list[tokens[0]] = tokens[1]
 
-        roll = random.randint(1, max_pop)
+def get_cities():
+    global city_list
+    city_list = {}
+    this_dir, this_file = os.path.split(__file__)
+    DATA_PATH = os.path.join(this_dir, "data/geo/cities.txt")
 
-    with con:
-        cur = con.cursor()
-        SQL = "set @csum := 0;"
-        cur.execute(SQL)
-
-        SQL = "select Pop.s as City, (@csum := @csum + Pop.p) +1 - Pop.p as Min, (@csum := @csum + Pop.p) as Max from (select City as s, SUM(Population) as p from bs_Geography where state = '" + statename + "' group by s ORDER BY 2) as Pop where '" + str(roll) + "' between (@csum := @csum + Pop.p) +1 - Pop.p and (@csum := @csum + Pop.p);"
-
-        cur.execute(SQL)
-        row = cur.fetchone()
-        city_name = row[0]
-
-    if con:
-        con.close()
-
-    return city_name
+    with open(DATA_PATH, 'r') as f:
+        for line in f:
+            tokens = line.rstrip('\n').split(',')
+            city_list[tokens[0] +',' + tokens[1]] = tokens[1] + ',' + tokens[2]

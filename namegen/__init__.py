@@ -14,14 +14,16 @@ from .person import get_surnames
 from .person import get_diminutives
 from .geo import get_random_city
 from .geo import get_random_state
+from .geo import get_states
+from .geo import get_cities
 from .team import get_random_team
 
 # Cache the files on load one time to speed things up
 state_list = city_list = {}
 firstname_list = diminutive_list = surname_list = []
 
-#get_states()
-
+get_states()
+get_cities()
 get_firstnames()
 get_diminutives()
 get_surnames()

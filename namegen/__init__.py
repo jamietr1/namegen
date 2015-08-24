@@ -9,12 +9,10 @@ from .person import get_random_firstname
 from .person import get_random_diminutive
 from .person import get_random_surname
 from .person import get_random_fullname
-from .person import get_firstnames
-from .person import get_surnames
-from .person import get_diminutives
 from .geo import get_random_city
 from .geo import get_random_state
 from .team import get_random_team
+<<<<<<< HEAD
 
 # Cache the files on load one time to speed things up
 state_list = city_list = {}
@@ -25,3 +23,5 @@ firstname_list = diminutive_list = surname_list = []
 get_firstnames()
 get_diminutives()
 get_surnames()
+=======
+>>>>>>> parent of b9a4f63... Cached city, state, firstname, and surname data on inital load

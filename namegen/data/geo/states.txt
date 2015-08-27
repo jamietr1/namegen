@@ -1,7 +1,7 @@
 Alabama,East
 Alaska,West
 Arizona,West
-Arkanas,Central
+Arkansas,Central
 California,West
 Colorado,West
 Connecticut,East
@@ -37,7 +37,7 @@ Ohio,Central
 Oklahoma,Central
 Oregon,West
 Pennsylvania,East
-Puerto Rica,East
+Puerto Rico,East
 Rhode Island,East
 South Carolina,East
 South Dakota,Central
